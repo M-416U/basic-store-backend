@@ -38,12 +38,16 @@ Welcome to the Node.js TypeScript Starter repository! This starter provides a so
    npm install
    ```
 
-4. replace .env.example => .env
+4. replace .env.example
+
    **linux macOS**
+
    ```bash
     cp .env.example .env
    ```
+
    **windows**
+
    ```bash
     copy .env.example .env
    ```
