@@ -39,10 +39,12 @@ Welcome to the Node.js TypeScript Starter repository! This starter provides a so
    ```
 
 4. replace .env.example => .env
+   **linux macOS**
    ```bash
-   //linux macOS
     cp .env.example .env
-    //windows
+   ```
+   **windows**
+   ```bash
     copy .env.example .env
    ```
 
