@@ -9,7 +9,12 @@ const createProduct = async (req: express.Request, res: express.Response) => {
         .status(404)
         .json({ success: false, message: "product must have an image " });
     }
-    const product = await db.product.create(req.body);
+    const { colors } = req.body;
+    const modifiedColors = colors.split(",");
+    const product = await db.product.create({
+      ...req.body,
+      colors: modifiedColors,
+    });
     return res.status(201).json(product);
   } catch (error) {
     console.error(error);
@@ -50,12 +55,17 @@ const updateProduct = async (req: express.Request, res: express.Response) => {
     if (!existingProduct) {
       return res.status(404).json({ message: "Product not found" });
     }
-
+    const { colors } = req.body;
+    const modifiedColors = colors.split(",");
     const mergedImages = existingProduct.images.concat(images || []);
 
     const updatedProduct = await db.product.findByIdAndUpdate(
       productId,
-      { ...updatedFields, images: mergedImages },
+      {
+        ...updatedFields,
+        images: mergedImages,
+        colors: [...existingProduct.colors, ...modifiedColors],
+      },
       { new: true }
     );
 
