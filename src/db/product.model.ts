@@ -3,6 +3,9 @@ import mongoose, { Document, Schema } from "mongoose";
 interface ProductDocument extends Document {
   name: string;
   description: string;
+  video: string;
+  brand: string;
+  inStock: number;
   price: number;
   oldPrice: number;
   rating: number;
@@ -22,6 +25,16 @@ const productSchema = new Schema<ProductDocument>({
   price: {
     type: Number,
     required: true,
+  },
+  inStock: {
+    type: Number,
+    required: true,
+  },
+  video: {
+    type: String,
+  },
+  brand: {
+    type: String,
   },
   oldPrice: {
     type: Number,

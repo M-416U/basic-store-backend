@@ -1,3 +1,4 @@
 export { signInMiddleware } from "./signIn.middleware";
 export { signUpMiddleware } from "./signUp.middleware";
-export { uploadImagesMiddleware } from "./uploadImages.middleware";
+export { uploadMediaMiddleware } from "./uploadMedia.middleware";
+export { validateProductDataMiddleware } from "./validateProductData.middleware";
