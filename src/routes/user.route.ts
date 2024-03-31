@@ -10,6 +10,7 @@ import {
   updateUser,
   updateCurrentUser,
 } from "../controllers";
+import { upload, uploadAvatarMiddleware } from "../middlewares";
 
 const router = express.Router();
 // retrive all users
@@ -25,9 +26,19 @@ router.delete("/me", deleteUser);
 router.delete("/:userId", deleteUser);
 
 // update current user
-router.put("/me", updateCurrentUser);
+router.put(
+  "/me",
+  upload.single("avatar"),
+  uploadAvatarMiddleware,
+  updateCurrentUser
+);
 // update a user
-router.put("/:userId", updateUser);
+router.put(
+  "/:userId",
+  upload.single("avatar"),
+  uploadAvatarMiddleware,
+  updateUser
+);
 
 //  add a product to the wishlist
 router.post("/wishlist/:productId", addToWishlist);

@@ -7,11 +7,15 @@ export const signUpMiddleware = async (
   res: express.Response,
   next: express.NextFunction
 ) => {
-  const { firstName, email, password, lastName, phoneNumber } = req.body;
-
+  const { firstName, email, password, lastName, phoneNumber, avatar } =
+    req.body;
+  console.log("Request", req.body);
   const errors = [];
   if (!firstName) {
     errors.push({ field: "firstName", message: "First Name is required" });
+  }
+  if (!avatar) {
+    errors.push({ field: "avatar", message: "avatar ('image') is required" });
   }
   if (!email) {
     errors.push({ field: "email", message: "Email is required" });
@@ -46,6 +50,7 @@ export const signUpMiddleware = async (
       phoneNumber,
       email,
       password,
+      avatar,
     });
     const token = jwt.sign({ userId: newUser._id }, process.env.SECRET);
     newUser.token = token;

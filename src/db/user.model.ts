@@ -4,6 +4,7 @@ import bcrypt from "bcrypt";
 interface UserDocument extends Document {
   firstName: string;
   lastName: string;
+  avatar: string;
   phoneNumber: string;
   token: string;
   email: string;
@@ -18,6 +19,10 @@ const userSchema = new Schema<UserDocument>({
     required: true,
   },
   lastName: {
+    type: String,
+    required: true,
+  },
+  avatar: {
     type: String,
     required: true,
   },

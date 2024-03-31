@@ -1,14 +1,13 @@
 import express from "express";
-import multer from "multer";
 
 import { Product } from "../controllers";
 import {
+  upload,
   uploadMediaMiddleware,
   validateProductDataMiddleware,
 } from "../middlewares";
 
 const router = express.Router();
-const upload = multer({ dest: "uploads/" });
 
 router.post(
   "/",
