@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 dotenv.config();
 
-import { authRoute, productsRoute, usersRoute } from "./routes";
+import { authRoute, productsRoute, usersRoute, categoryRoute } from "./routes";
 
 const app = express();
 app.use(cors());
@@ -17,6 +17,7 @@ server.listen(3000, () => console.log("Server listening on port 3000"));
 
 app.use("/auth", authRoute);
 app.use("/products", productsRoute);
+app.use("/categories", categoryRoute);
 app.use("/users", usersRoute);
 
 const MONGO_DB_URL = process.env.MONGO_DB_URL!;

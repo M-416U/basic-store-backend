@@ -1,10 +1,11 @@
 import mongoose, { Document, Schema } from "mongoose";
 
-interface ProductDocument extends Document {
+export interface ProductDocument extends Document {
   name: string;
   description: string;
   video: string;
   brand: string;
+  categoryId: string;
   inStock: number;
   price: number;
   oldPrice: number;
@@ -34,6 +35,9 @@ const productSchema = new Schema<ProductDocument>({
     type: String,
   },
   brand: {
+    type: String,
+  },
+  categoryId: {
     type: String,
   },
   oldPrice: {

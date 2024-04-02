@@ -25,7 +25,26 @@ const createProduct = async (req: express.Request, res: express.Response) => {
 //retrieve all products
 const getAllProducts = async (req: express.Request, res: express.Response) => {
   try {
-    const products = await db.product.find();
+    const { name, brand, categoryId, minPrice, maxPrice, colors, minRating } =
+      req.query;
+
+    const filter: any = {};
+    if (name) filter.name = { $regex: new RegExp(String(name), "i") };
+    if (brand) filter.brand = { $regex: new RegExp(String(brand), "i") };
+    if (categoryId) filter.categoryId = categoryId;
+    if (minPrice !== undefined && maxPrice !== undefined) {
+      filter.price = { $gte: minPrice, $lte: maxPrice };
+    } else if (minPrice !== undefined) {
+      filter.price = { $gte: minPrice };
+    } else if (maxPrice !== undefined) {
+      filter.price = { $lte: maxPrice };
+    }
+    if (colors) {
+      const colorsArray = (colors as string).split(",");
+      filter.colors = { $in: colorsArray };
+    }
+    if (minRating !== undefined) filter.rating = { $gte: minRating };
+    const products = await db.product.find(filter as any);
     return res.status(200).json(products);
   } catch (error) {
     console.error(error);

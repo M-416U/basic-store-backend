@@ -1,6 +1,8 @@
+export { default as Product } from "./product.controller";
+export { default as Category } from "./category.controller";
+
 export { signInController } from "./signIn.controller";
 export { signUpController } from "./signUp.controller";
-export { default as Product } from "./product.controller";
 export { addToCart } from "./user.controller";
 export { addToWishlist } from "./user.controller";
 export { getAllUsers } from "./user.controller";
